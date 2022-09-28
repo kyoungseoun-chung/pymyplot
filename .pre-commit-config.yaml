@@ -1,0 +1,30 @@
+repos:
+  - hooks:
+      - args:
+          - --line-length=79
+        id: black
+    repo: https://github.com/psf/black
+    rev: 22.3.0
+  - hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: debug-statements
+      - id: requirements-txt-fixer
+        language_version: python3
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.1.0
+  - hooks:
+      - id: reorder-python-imports
+    repo: https://github.com/asottile/reorder_python_imports
+    rev: v2.6.0
+  - hooks:
+      - args:
+          - --py39-plus
+        id: pyupgrade
+    repo: https://github.com/asottile/pyupgrade
+    rev: v2.31.1
+  - hooks:
+      - id: commitizen
+    repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.35.0
