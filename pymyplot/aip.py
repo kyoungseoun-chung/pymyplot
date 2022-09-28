@@ -74,7 +74,7 @@ myplt.rcParams["savefig.dpi"] = DPI.line
 
 # Set default font sizes
 myplt.rcParams["font.size"] = Font.normal
-myplt.rcParams["legend.fontsize"] = Font.small
+myplt.rcParams["legend.fontsize"] = Font.smaller
 myplt.rcParams["figure.titlesize"] = Font.large
 myplt.rcParams["axes.labelsize"] = Font.normal
 myplt.rcParams["xtick.labelsize"] = Font.smaller
