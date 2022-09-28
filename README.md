@@ -2,6 +2,21 @@
 
 A collection of useful presets for the visualization of scientific data. It is intended for personal use only.
 
+## Requirements
+
+- python >= 3.9
+- matplotlib >= 3.6.0
+
+## Installation
+
+You can use either [poetry](https://python-poetry.org) or pip.
+
+```bash
+pip install -e ./ # install to local device so that can be accessed from other directory
+# or
+poetry install # install automatically to the poetry-managed virtual environment.
+```
+
 ## Usage
 
 ### Basic
@@ -13,7 +28,7 @@ In the module, `myplt` overwrites `matplotlib.pyplot`. This is intended to apply
 >>> from pymyplot import aip # Presets following the AIP journal guidelines
 >>> fig, ax = myplt.subplots(...)
 >>> ax.plot(..., linewidth=aip.Line.thin)
->>> myplt.save_fig(..., format=aip.fig_format, dpi=aip.DIP.line)
+>>> myplt.save_fig(..., format=aip.fig_format, dpi=aip.DPI.line)
 ```
 
 ### Colors
