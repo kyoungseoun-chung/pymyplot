@@ -47,6 +47,8 @@ class Font:
     * larger: 16 pt
     """
 
+    tiny: float = 4
+    smallest: float = 6
     smaller: float = 8
     small: float = 10
     normal: float = 12
