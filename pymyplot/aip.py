@@ -2,7 +2,10 @@
 """Presets to prepare the plot for the AIP manuscipt"""
 from dataclasses import dataclass
 
+from cycler import cycler
+
 from pymyplot import cm
+from pymyplot import get_color
 from pymyplot import myplt
 
 
@@ -86,3 +89,15 @@ myplt.rcParams["ytick.labelsize"] = Font.smaller
 myplt.rcParams["text.usetex"] = True
 myplt.rcParams["font.family"] = "sans-serif"
 myplt.rcParams["font.sans-serif"] = "Helvetica"
+
+default_cycler = cycler(
+    color=[
+        get_color("red-600"),
+        get_color("blue-600"),
+        get_color("green-600"),
+        get_color("orange-600"),
+        get_color("purple-600"),
+    ]
+) + cycler(linestyle=["-", "--", ":", "-.", "-"])
+
+myplt.rc("axes", prop_cycle=default_cycler)
