@@ -12,9 +12,9 @@ A collection of useful presets for the visualization of scientific data. It is i
 You can use either [poetry](https://python-poetry.org) or pip.
 
 ```bash
-pip install -e ./ # install to local device so that can be accessed from other directory
+pip install pymyplot
 # or
-poetry install # install automatically to the poetry-managed virtual environment.
+poetry add pymyplot
 ```
 
 ## Usage
@@ -25,10 +25,15 @@ In the module, `myplt` overwrites `matplotlib.pyplot`. This is intended to apply
 
 ```python
 >>> from pymyplot import myplt  # myplt overwrites matplotlib.pyplot
->>> from pymyplot import aip # Presets following the AIP journal guidelines
+>>> from pymyplot.basic import Line, Font, Marker
+# Basic presets come with
+# Line: defulat_linewidth = 1.0
+# Font: default_font_size = 12.0, default_family = "sans-serif", default_font = "Helvetica"
+# Marker: default_size = 10.0
 >>> fig, ax = myplt.subplots(...)
->>> ax.plot(..., linewidth=aip.Line.thin)
->>> myplt.save_fig(..., format=aip.fig_format, dpi=aip.DPI.line)
+>>> ax.text(..., fontsize=Font.size("small"))
+>>> ax.plot(..., linewidth=Line.width("thin"), marker=Marker.style("solid"))
+>>> ax.scatter(..., s=Marker.size("small"))
 ```
 
 ### Colors
