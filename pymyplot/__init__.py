@@ -15,3 +15,4 @@ mympl = mpl
 
 
 __all__ = ["get_color"]
+__version__ = "0.0.2"
