@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pymyplot"
-version = "0.0.2"
+version = "0.1.0"
 description = "Correction of usefull plotting setup for matplotlib"
 authors = ["Kyoungseoun Chung <kchung@student.ethz.ch>"]
 
