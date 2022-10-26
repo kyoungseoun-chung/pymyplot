@@ -1,6 +1,8 @@
 # Pymyplot
 
-A collection of useful presets for the visualization of scientific data. It is intended for personal use only.
+A collection of useful presets for the visualization of scientific data. It is intended for personal usage but feel free to take a look at it.
+
+> As I noticed, publishing this package to pypi.org appears to be overkill. Nevertheless, I have decided to do so in order to have better access to the library for my own personal use.
 
 ## Requirements
 
