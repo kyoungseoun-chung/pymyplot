@@ -4,64 +4,86 @@ from dataclasses import dataclass
 
 from cycler import cycler
 
+from .fonts import FontBase
+from .lines import LineBase
+from .markers import MarkerBase
 from pymyplot import cm
 from pymyplot import get_color
 from pymyplot import myplt
 
 
-# Lines
 @dataclass
-class Line:
-    """Collection of line width.
-    * thiner: 0.1 pt
-    * thin: 0.5 pt
-    * normal: 1 pt
-    * thick: 2 pt
-    * thicker: 3 pt
-    """
+class AIPMarker(MarkerBase):
 
-    thiner: float = 0.1
-    thin: float = 0.5
-    normal: float = 1
-    thick: float = 2
-    thicker: float = 3
+    default_size: float = 10
+
+
+@dataclass
+class AIPLine(LineBase):
+
+    default_linewidth: float = 1.0
+
+
+@dataclass
+class AIPFont(FontBase):
+
+    default_size: float = 12.0
+    default_family: str = "sans-serif"
+    default_font: str = "Helvetica"
+    use_tex: bool = True
+
+    def __post_init__(self):
+
+        # Custom axis related font size
+        myplt.rcParams["legend.fontsize"] = self.size("small")
+        myplt.rcParams["figure.titlesize"] = self.size("large")
+        myplt.rcParams["axes.labelsize"] = self.size("medium")
+        myplt.rcParams["xtick.labelsize"] = self.size("small")
+        myplt.rcParams["ytick.labelsize"] = self.size("small")
+
+        # Cycler
+        default_cycler = cycler(
+            color=[
+                get_color("red-600"),
+                get_color("blue-600"),
+                get_color("green-600"),
+                get_color("orange-600"),
+                get_color("purple-600"),
+            ]
+        ) + cycler(linestyle=["-", "--", ":", "-.", "-"])
+
+        myplt.rc("axes", prop_cycle=default_cycler)
 
 
 # Max size
 @dataclass
-class Coloum:
+class AIPFigsize:
     """Coloumn dimesnion.
     * single: 8.5 cm
     * double: 17
     """
 
-    single: float = 8.5 * cm
-    double: float = 17 * cm
+    column_single: float = 8.5 * cm
+    column_double: float = 17 * cm
 
+    def width(self, c_type: str) -> float:
+        """Width of the figure. Same as column length."""
+        assert c_type in ["single", "double", "s", "d"]
 
-# Fonts
-@dataclass
-class Font:
-    """Font size
-    * smaller: 8 pt
-    * samll: 10 pt
-    * noraml: 12 pt
-    * large: 14 pt
-    * larger: 16 pt
-    """
+        if c_type == "single" or c_type == "s":
+            return self.column_single
+        else:
+            return self.column_double
 
-    tiny: float = 4
-    smallest: float = 6
-    smaller: float = 8
-    small: float = 10
-    normal: float = 12
-    large: float = 14
-    larger: float = 16
+    def height(self, num_row: int) -> float:
+        """Height of the figure. 6 cm * `num_row`."""
+
+        return num_row * 6 * cm
 
 
 # DPI
 @dataclass
-class DPI:
+class AIPdpi:
     """DPI setup
     * line: 600 dpi
     * color: 300 dpi
@@ -70,34 +92,18 @@ class DPI:
     line: float = 600
     color: float = 300
 
+    def __post_init__(self):
+
+        # Set default dpi
+        myplt.rcParams["figure.dpi"] = self.color
+        myplt.rcParams["savefig.dpi"] = self.line
+
 
 # Figure format
 fig_format = "eps"
 
-myplt.rcParams["figure.dpi"] = 100
-myplt.rcParams["savefig.dpi"] = DPI.line
-
-# Set default font sizes
-myplt.rcParams["font.size"] = Font.normal
-myplt.rcParams["legend.fontsize"] = Font.smaller
-myplt.rcParams["figure.titlesize"] = Font.large
-myplt.rcParams["axes.labelsize"] = Font.normal
-myplt.rcParams["xtick.labelsize"] = Font.smaller
-myplt.rcParams["ytick.labelsize"] = Font.smaller
-
-# Set font style
-myplt.rcParams["text.usetex"] = True
-myplt.rcParams["font.family"] = "sans-serif"
-myplt.rcParams["font.sans-serif"] = "Helvetica"
-
-default_cycler = cycler(
-    color=[
-        get_color("red-600"),
-        get_color("blue-600"),
-        get_color("green-600"),
-        get_color("orange-600"),
-        get_color("purple-600"),
-    ]
-) + cycler(linestyle=["-", "--", ":", "-.", "-"])
-
-myplt.rc("axes", prop_cycle=default_cycler)
+Font = AIPFont()
+Line = AIPLine()
+Marker = AIPMarker()
+FigSize = AIPFigsize()
+DPI = AIPdpi()
