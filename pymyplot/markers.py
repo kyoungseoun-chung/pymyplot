@@ -5,13 +5,15 @@ from dataclasses import dataclass
 from matplotlib.markers import MarkerStyle
 
 marker_scaling = {
-    "xx-small": 0.1,
+    "xxx-small": 0.1,
+    "xx-small": 0.2,
     "x-small": 0.3,
     "small": 0.5,
     "medium": 1.0,
     "large": 1.5,
     "x-large": 2.0,
     "xx-large": 3.0,
+    "xxx-large": 5.0,
     "normal": 1.0,
 }
 
@@ -28,6 +30,7 @@ class MarkerBase:
     def size(self, size_key: str) -> float:
 
         assert size_key in [
+            "xxx-small",
             "xx-small",
             "x-small",
             "small",
@@ -35,6 +38,7 @@ class MarkerBase:
             "large",
             "x-large",
             "xx-large",
+            "xxx-large",
             "normal",
         ], f"Marker: {size_key} is not available!"
 

@@ -29,13 +29,6 @@ class FontBase:
     default_font: str = "Helvetica"
     use_tex: bool = True
 
-    def __post_init__(self):
-
-        myplt.rcParams["font.size"] = self.default_size
-        myplt.rcParams["font.family"] = self.default_family
-        myplt.rcParams["font.sans-serif"] = self.default_font
-        myplt.rcParams["text.usetex"] = self.use_tex
-
     def size(self, size_key: str) -> float:
 
         assert size_key in [

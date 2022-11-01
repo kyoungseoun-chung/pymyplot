@@ -31,29 +31,32 @@ class BasicFont(FontBase):
     default_font: str = "Helvetica"
     use_tex: bool = True
 
-    def __post_init__(self):
-
-        # Custom axis related font size
-        myplt.rcParams["legend.fontsize"] = self.size("small")
-        myplt.rcParams["figure.titlesize"] = self.size("large")
-        myplt.rcParams["axes.labelsize"] = self.size("medium")
-        myplt.rcParams["xtick.labelsize"] = self.size("small")
-        myplt.rcParams["ytick.labelsize"] = self.size("small")
-
-        # Cycler
-        default_cycler = cycler(
-            color=[
-                get_color("red-600"),
-                get_color("blue-600"),
-                get_color("green-600"),
-                get_color("orange-600"),
-                get_color("purple-600"),
-            ]
-        ) + cycler(linestyle=["-", "--", ":", "-.", "-"])
-
-        myplt.rc("axes", prop_cycle=default_cycler)
-
 
 Font = BasicFont()
 Line = BasicLine()
 Marker = BasicMarker()
+
+# Default settings
+myplt.rcParams["legend.fontsize"] = Font.size("xx-small")
+myplt.rcParams["figure.titlesize"] = Font.size("large")
+myplt.rcParams["axes.labelsize"] = Font.size("small")
+myplt.rcParams["xtick.labelsize"] = Font.size("xx-small")
+myplt.rcParams["ytick.labelsize"] = Font.size("xx-small")
+
+myplt.rcParams["font.size"] = Font.default_size
+myplt.rcParams["font.family"] = Font.default_family
+myplt.rcParams["font.sans-serif"] = Font.default_font
+myplt.rcParams["text.usetex"] = Font.use_tex
+
+# Cycler
+default_cycler = cycler(
+    color=[
+        get_color("red-600"),
+        get_color("blue-600"),
+        get_color("green-600"),
+        get_color("orange-600"),
+        get_color("purple-600"),
+    ]
+) + cycler(linestyle=["-", "--", ":", "-.", "-"])
+
+myplt.rc("axes", prop_cycle=default_cycler)

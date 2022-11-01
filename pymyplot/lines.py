@@ -6,13 +6,15 @@ from .markers import MarkerStyle
 from pymyplot import get_color
 
 linewidth_scaling = {
-    "xx-thin": 0.1,
+    "xxx-thin": 0.1,
+    "xx-thin": 0.2,
     "x-thin": 0.3,
     "thin": 0.5,
     "normal": 1.0,
     "thick": 1.5,
     "x-thick": 2.0,
     "xx-thick": 3.0,
+    "xxx-thick": 5.0,
 }
 
 linestyle_set = {
@@ -44,6 +46,7 @@ class LineBase:
     def width(self, width_key: str) -> float:
 
         assert width_key in [
+            "xxx-thin",
             "xx-thin",
             "x-thin",
             "thin",
@@ -51,6 +54,7 @@ class LineBase:
             "thick",
             "x-thick",
             "xx-thick",
+            "xxx-thick",
         ], f"Line: {width_key} is not available!"
 
         return linewidth_scaling[width_key] * self.default_linewidth
