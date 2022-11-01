@@ -89,11 +89,11 @@ FigSize = AIPFigsize()
 DPI = AIPdpi()
 
 # Default settings
-myplt.rcParams["legend.fontsize"] = Font.size("small")
+myplt.rcParams["legend.fontsize"] = Font.size("xx-small")
 myplt.rcParams["figure.titlesize"] = Font.size("large")
-myplt.rcParams["axes.labelsize"] = Font.size("medium")
-myplt.rcParams["xtick.labelsize"] = Font.size("small")
-myplt.rcParams["ytick.labelsize"] = Font.size("small")
+myplt.rcParams["axes.labelsize"] = Font.size("small")
+myplt.rcParams["xtick.labelsize"] = Font.size("xx-small")
+myplt.rcParams["ytick.labelsize"] = Font.size("xx-small")
 
 myplt.rcParams["font.size"] = Font.default_size
 myplt.rcParams["font.family"] = Font.default_family
