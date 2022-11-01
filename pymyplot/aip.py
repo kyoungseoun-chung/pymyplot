@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Presets to prepare the plot for the AIP manuscipt"""
+"""Presets to prepare the plot for the AIP manuscript"""
 from dataclasses import dataclass
 
 from cycler import cycler
@@ -58,7 +58,7 @@ class AIPFont(FontBase):
 # Max size
 @dataclass
 class AIPFigsize:
-    """Coloumn dimesnion.
+    """Column dimension.
     * single: 8.5 cm
     * double: 17
     """
