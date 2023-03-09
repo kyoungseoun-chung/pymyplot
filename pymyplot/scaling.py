@@ -1,6 +1,21 @@
 #!/usr/bin/env python3
 """Size scaling based on tailwind scaling."""
 
+HEIGHT_SCALE: dict[str, float] = {
+    "leading-3": 0.75,
+    "leading-4": 1.0,
+    "leading-5": 1.25,
+    "leading-6": 1.5,
+    "leading-7": 1.75,
+    "leading-8": 2.0,
+    "leading-9": 2.25,
+    "leading-10": 2.5,
+}
+"""Line height scaling. It follows tailwindcss convention. Used with `Font` class.
+>>> HEIGHT_SCALE["leading-3"]
+>>> 0.75
+"""
+
 SIZE_SCALE: dict[str, float] = {
     "text-xs": 0.75,
     "text-sm": 0.875,

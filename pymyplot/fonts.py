@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 from pymyplot import get_color
 from pymyplot.scaling import FONT_WEIGHT
+from pymyplot.scaling import HEIGHT_SCALE
 from pymyplot.scaling import SIZE_SCALE
 
 
@@ -38,3 +39,10 @@ class FontBase:
         """Return color of the font using the color_code. The color_code follows tailwindcss convention."""
 
         return get_color(color_code)
+
+    def linespacing(self, spacing_key: str) -> float:
+        """Line spacing. Multiplication factor of the font size. Also uses tailwindcss convention `leading-*`."""
+
+        assert spacing_key in list(HEIGHT_SCALE.keys())
+
+        return HEIGHT_SCALE[spacing_key]
