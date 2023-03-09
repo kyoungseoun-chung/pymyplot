@@ -1,7 +1,7 @@
 repos:
   - hooks:
       - args:
-          - --line-length=79
+          - --line-length=88
         id: black
     repo: https://github.com/psf/black
     rev: 22.3.0

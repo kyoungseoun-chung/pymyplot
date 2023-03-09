@@ -19,15 +19,10 @@ def test_basic_setup() -> None:
         assert pytest.approx(BasicFont.size(k)) == v * BasicFont.default_size
 
     for k, v in SIZE_SCALE.items():
-        assert (
-            pytest.approx(BasicMarker.size(k)) == v * BasicMarker.default_size
-        )
+        assert pytest.approx(BasicMarker.size(k)) == v * BasicMarker.default_size
 
     for k, v in WIDTH_SCALE.items():
-        assert (
-            pytest.approx(BasicLine.width(k))
-            == v * BasicLine.default_linewidth
-        )
+        assert pytest.approx(BasicLine.width(k)) == v * BasicLine.default_linewidth
 
     for k, v in FONT_WEIGHT.items():
         assert pytest.approx(BasicFont.weight(k)) == v
