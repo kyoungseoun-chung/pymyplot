@@ -46,7 +46,7 @@ In the module, `myplt` overwrites `matplotlib.pyplot`. This is intended to apply
 "#f87171"
 ```
 
-Each `Font`, `Line`, and `Marker` class are interfacing `get_color` method. Therefore, you can use:
+Each `Font`, `Line`, and `Marker` class is interfacing `get_color` method. Therefore, you can also use:
 
 ```python
 >>> Font.color("red-400")

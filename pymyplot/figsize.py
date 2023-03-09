@@ -26,6 +26,11 @@ class Figsize:
         """Width of the double column figure."""
         return self.column_double * cm
 
+    @property
+    def w_hc(self) -> float:
+        """Width of the 1-1/2 column figure."""
+        return 0.5 * (self.column_double + self.column_single) * cm
+
     def h(self, num_row: int) -> float:
         """Height of the figure. 6 cm * `num_row`."""
 

@@ -45,7 +45,6 @@ class AIPFigsize(Figsize):
     row_default: float = 6
 
 
-# DPI
 @dataclass
 class AIPdpi:
     """DPI setup
