@@ -2,7 +2,7 @@
 """Test font module."""
 import pytest
 
-from pymyplot import myplt
+from pymyplot import myplt as plt
 
 
 def test_basic_setup() -> None:
@@ -27,11 +27,11 @@ def test_basic_setup() -> None:
     for k, v in FONT_WEIGHT.items():
         assert pytest.approx(BasicFont.weight(k)) == v
 
-    assert myplt.rcParams["legend.fontsize"] == BasicFont.size("text-lg")
-    assert myplt.rcParams["figure.titlesize"] == BasicFont.size("text-2xl")
-    assert myplt.rcParams["axes.labelsize"] == BasicFont.size("text-base")
-    assert myplt.rcParams["xtick.labelsize"] == BasicFont.size("text-xs")
-    assert myplt.rcParams["ytick.labelsize"] == BasicFont.size("text-sm")
+    assert plt.rcParams["legend.fontsize"] == BasicFont.size("text-lg")
+    assert plt.rcParams["figure.titlesize"] == BasicFont.size("text-2xl")
+    assert plt.rcParams["axes.labelsize"] == BasicFont.size("text-base")
+    assert plt.rcParams["xtick.labelsize"] == BasicFont.size("text-xs")
+    assert plt.rcParams["ytick.labelsize"] == BasicFont.size("text-sm")
 
 
 def test_aip_setup() -> None:
@@ -54,8 +54,8 @@ def test_aip_setup() -> None:
     for k, v in WIDTH_SCALE.items():
         assert pytest.approx(AIPLine.width(k)) == v * AIPLine.default_linewidth
 
-    assert myplt.rcParams["legend.fontsize"] == AIPFont.size("text-base")
-    assert myplt.rcParams["figure.titlesize"] == AIPFont.size("text-2xl")
-    assert myplt.rcParams["axes.labelsize"] == AIPFont.size("text-base")
-    assert myplt.rcParams["xtick.labelsize"] == AIPFont.size("text-sm")
-    assert myplt.rcParams["ytick.labelsize"] == AIPFont.size("text-sm")
+    assert plt.rcParams["legend.fontsize"] == AIPFont.size("text-base")
+    assert plt.rcParams["figure.titlesize"] == AIPFont.size("text-2xl")
+    assert plt.rcParams["axes.labelsize"] == AIPFont.size("text-base")
+    assert plt.rcParams["xtick.labelsize"] == AIPFont.size("text-sm")
+    assert plt.rcParams["ytick.labelsize"] == AIPFont.size("text-sm")
