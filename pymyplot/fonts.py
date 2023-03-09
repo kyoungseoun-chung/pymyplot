@@ -1,50 +1,40 @@
 #!/usr/bin/env python3
 """
-font_scalings = {
-    'xx-small': 0.579,
-    'x-small':  0.694,
-    'small':    0.833,
-    'medium':   1.0,
-    'large':    1.200,
-    'x-large':  1.440,
-    'xx-large': 1.728,
-    'larger':   1.2,
-    'smaller':  0.833,
-    None:       1.0,
-}
+Font module
 """
 from dataclasses import dataclass
 
-from matplotlib.font_manager import font_scalings
-
 from pymyplot import get_color
-from pymyplot import myplt
+from pymyplot.scaling import FONT_WEIGHT
+from pymyplot.scaling import SIZE_SCALE
 
 
 @dataclass
 class FontBase:
 
-    default_size: float = 10.0
+    default_size: float = 16.0
+    """Default fontsize. Set to 16px."""
     default_family: str = "sans-serif"
     default_font: str = "Helvetica"
     use_tex: bool = True
 
     def size(self, size_key: str) -> float:
+        """Return size of the font using the size_key.
+        For the scaling factors, see: `pymyplot.scaling.SIZE_SCALE`
+        """
 
-        assert size_key in [
-            "xx-small",
-            "x-small",
-            "small",
-            "medium",
-            "large",
-            "x-large",
-            "xx-large",
-            "larger",
-            "smaller",
-        ], f"Font: {size_key} is not available!"
+        assert size_key in list(SIZE_SCALE.keys())
 
-        return font_scalings[size_key] * self.default_size
+        return SIZE_SCALE[size_key] * self.default_size
+
+    def weight(self, weight_key: str) -> int:
+        """Return font weight. Follows tailwindcss convention."""
+
+        assert weight_key in list(FONT_WEIGHT.keys())
+
+        return FONT_WEIGHT[weight_key]
 
     def color(self, color_code: str) -> str:
+        """Return color of the font using the color_code. The color_code follows tailwindcss convention."""
 
         return get_color(color_code)

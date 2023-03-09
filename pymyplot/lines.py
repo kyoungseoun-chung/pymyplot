@@ -4,18 +4,8 @@ from dataclasses import dataclass
 
 from .markers import MarkerStyle
 from pymyplot import get_color
+from pymyplot.scaling import WIDTH_SCALE
 
-linewidth_scaling = {
-    "xxx-thin": 0.1,
-    "xx-thin": 0.2,
-    "x-thin": 0.3,
-    "thin": 0.5,
-    "normal": 1.0,
-    "thick": 1.5,
-    "x-thick": 2.0,
-    "xx-thick": 3.0,
-    "xxx-thick": 5.0,
-}
 
 linestyle_set = {
     "solid": "-",
@@ -44,20 +34,13 @@ class LineBase:
     default_linewidth = 1.0
 
     def width(self, width_key: str) -> float:
+        """Return width of the line using the width key.
+        For the scaling factors, see: `pymyplot.scaling.WIDTH_SCALE`
+        """
 
-        assert width_key in [
-            "xxx-thin",
-            "xx-thin",
-            "x-thin",
-            "thin",
-            "normal",
-            "thick",
-            "x-thick",
-            "xx-thick",
-            "xxx-thick",
-        ], f"Line: {width_key} is not available!"
+        assert width_key in list(WIDTH_SCALE.keys())
 
-        return linewidth_scaling[width_key] * self.default_linewidth
+        return WIDTH_SCALE[width_key] * self.default_linewidth
 
     def color(self, color_code: str) -> str:
 

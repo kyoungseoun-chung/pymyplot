@@ -4,10 +4,10 @@ from dataclasses import dataclass
 
 from cycler import cycler
 
+from .figsize import Figsize
 from .fonts import FontBase
 from .lines import LineBase
 from .markers import MarkerBase
-from pymyplot import cm
 from pymyplot import get_color
 from pymyplot import myplt
 
@@ -33,30 +33,16 @@ class AIPFont(FontBase):
     use_tex: bool = True
 
 
-# Max size
 @dataclass
-class AIPFigsize:
+class AIPFigsize(Figsize):
     """Column dimension.
     * single: 8.5 cm
     * double: 17
     """
 
-    column_single: float = 8.5 * cm
-    column_double: float = 17 * cm
-
-    def width(self, c_type: str) -> float:
-        """Width of the figure. Same as column length."""
-        assert c_type in ["single", "double", "s", "d"]
-
-        if c_type == "single" or c_type == "s":
-            return self.column_single
-        else:
-            return self.column_double
-
-    def height(self, num_row: int) -> float:
-        """Height of the figure. 6 cm * `num_row`."""
-
-        return num_row * 6 * cm
+    column_single: float = 8.5
+    column_double: float = 17
+    row_default: float = 6
 
 
 # DPI
@@ -69,12 +55,6 @@ class AIPdpi:
 
     line: float = 600
     color: float = 300
-
-    def __post_init__(self):
-
-        # Set default dpi
-        myplt.rcParams["figure.dpi"] = self.color
-        myplt.rcParams["savefig.dpi"] = self.line
 
 
 # Figure format
@@ -89,17 +69,20 @@ FigSize = AIPFigsize()
 DPI = AIPdpi()
 
 # Default settings
-myplt.rcParams["legend.fontsize"] = Font.size("xx-small")
-myplt.rcParams["figure.titlesize"] = Font.size("large")
-myplt.rcParams["axes.labelsize"] = Font.size("small")
-myplt.rcParams["xtick.labelsize"] = Font.size("xx-small")
-myplt.rcParams["ytick.labelsize"] = Font.size("xx-small")
+myplt.rcParams["legend.fontsize"] = Font.size("text-base")
+myplt.rcParams["figure.titlesize"] = Font.size("text-2xl")
+myplt.rcParams["axes.labelsize"] = Font.size("text-base")
+myplt.rcParams["xtick.labelsize"] = Font.size("text-sm")
+myplt.rcParams["ytick.labelsize"] = Font.size("text-sm")
 
 myplt.rcParams["font.size"] = Font.default_size
 myplt.rcParams["font.family"] = Font.default_family
 myplt.rcParams["font.sans-serif"] = Font.default_font
 myplt.rcParams["text.usetex"] = Font.use_tex
 
+# Set default dpi
+myplt.rcParams["figure.dpi"] = DPI.color
+myplt.rcParams["savefig.dpi"] = DPI.line
 # Cycler
 default_cycler = cycler(
     color=[

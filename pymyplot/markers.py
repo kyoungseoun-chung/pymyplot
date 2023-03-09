@@ -4,42 +4,26 @@ from dataclasses import dataclass
 
 from matplotlib.markers import MarkerStyle
 
-marker_scaling = {
-    "xxx-small": 0.1,
-    "xx-small": 0.2,
-    "x-small": 0.3,
-    "small": 0.5,
-    "medium": 1.0,
-    "large": 1.5,
-    "x-large": 2.0,
-    "xx-large": 3.0,
-    "xxx-large": 5.0,
-    "normal": 1.0,
-}
+from pymyplot.scaling import SIZE_SCALE
 
 
 @dataclass
 class MarkerBase:
 
-    default_size: float = 6.0
+    default_size: float = 16.0
 
     def style(self, style_key: str) -> MarkerStyle:
+        """Return marker style. It follows matplotlib convention.
+        Return type is `matplotlib.markers.MarkerStyle` to be properly used in plot with types.
+        """
 
         return MarkerStyle(style_key)
 
     def size(self, size_key: str) -> float:
+        """Return size of the marker using the size_key.
+        For the scaling factors, see: `pymyplot.scaling.SIZE_SCALE`
+        """
 
-        assert size_key in [
-            "xxx-small",
-            "xx-small",
-            "x-small",
-            "small",
-            "medium",
-            "large",
-            "x-large",
-            "xx-large",
-            "xxx-large",
-            "normal",
-        ], f"Marker: {size_key} is not available!"
+        assert size_key in list(SIZE_SCALE.keys())
 
-        return marker_scaling[size_key] * self.default_size
+        return SIZE_SCALE[size_key] * self.default_size

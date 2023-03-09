@@ -2,6 +2,8 @@
 """Collection of Tailwind CSS color."""
 from typing import Union
 
+import matplotlib as mpl
+
 
 color_dict: dict[str, Union[str, dict[int, str]]] = {
     "black": "#000",
@@ -274,9 +276,21 @@ color_dict: dict[str, Union[str, dict[int, str]]] = {
 
 
 def get_color(color: str) -> str:
+    """Get tailwind color from input string.
+
+    Example:
+        >>> get_color("red-500")
+        "#ef4444",
+    """
 
     if color == "black" or color == "white":
         return color_dict[color]  # type: ignore
     else:
         color_shade = color.split("-")
         return color_dict[color_shade[0]][int(color_shade[1])]
+
+
+def get_cmap(cmap: str) -> mpl.colors.Colormap:
+    """Get colormap from input string."""
+
+    return mpl.colors.Colormap(cmap)
