@@ -90,18 +90,21 @@ myplt.rcParams["font.sans-serif"] = Font.default_font
 myplt.rcParams["text.usetex"] = Font.use_tex
 
 # Set default dpi
-myplt.rcParams["figure.dpi"] = DPI.art
+myplt.rcParams["figure.dpi"] = DPI.halftone
 myplt.rcParams["savefig.dpi"] = DPI.line
 
 # Cycler
+# Follows the recommended color palette in get_color method
 default_cycler = cycler(
     color=[
-        get_color("red-600"),
-        get_color("blue-600"),
+        get_color("sky-700"),
+        get_color("red-500"),
         get_color("green-600"),
-        get_color("orange-600"),
-        get_color("purple-600"),
+        get_color("yellow-500"),
+        get_color("cyan-400"),
+        get_color("fuchsia-700"),
+        get_color("gray-400"),
     ]
-) + cycler(linestyle=["-", "--", ":", "-.", "-"])
+) + cycler(linestyle=["-", "--", ":", "-.", "-", "--", ":"])
 
 myplt.rc("axes", prop_cycle=default_cycler)

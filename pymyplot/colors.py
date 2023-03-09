@@ -281,6 +281,17 @@ def get_color(color: str) -> str:
     Example:
         >>> get_color("red-500")
         "#ef4444",
+
+    Recommended color palette (hopefully color-blind friendly) for lines:
+        - Reference: https://personal.sron.nl/~pault/ (But slightly modified to use the tailwindcss colors)
+        - blue: "sky-700"
+        - red: "red-500"
+        - green: "green-600"
+        - yellow: "yellow-500"
+        - cyan: "cyan-400"
+        - purple: "fuchsia-700"
+        - grey: "gray-400"
+
     """
 
     if color == "black" or color == "white":

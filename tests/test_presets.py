@@ -5,6 +5,20 @@ import pytest
 from pymyplot import myplt as plt
 
 
+def test_elsevier_setup() -> None:
+
+    from pymyplot.elsevier import Line as ELLine
+
+    for i in range(7):
+        plt.plot(
+            [i for i in range(7)],
+            [i + 1 for _ in range(7)],
+            linewidth=ELLine.width("w-40"),
+            linestyle="-",
+        )
+    plt.show()
+
+
 def test_basic_setup() -> None:
     from pymyplot.scaling import SIZE_SCALE, WIDTH_SCALE, FONT_WEIGHT
     from pymyplot.basic import Font as BasicFont
