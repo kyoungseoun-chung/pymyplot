@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Test font module."""
+import numpy as np
 import pytest
 
 from pymyplot import myplt as plt
@@ -16,6 +17,66 @@ def test_elsevier_setup() -> None:
             linewidth=ELLine.width("w-40"),
             linestyle="-",
         )
+
+    plt.show()
+
+
+def test_cmap() -> None:
+
+    from pymyplot.colors import TOLCmap
+
+    gradient = np.linspace(0, 1, 256)
+    gradient = np.vstack((gradient, gradient))
+
+    n_row = 3
+    figh = 0.35 + 0.15 + (n_row + (n_row - 1) * 0.1) * 0.22
+    fig, axs = plt.subplots(nrows=n_row + 1, figsize=(6.4, figh))
+    fig.subplots_adjust(top=1 - 0.35 / figh, bottom=0.15 / figh, left=0.2, right=0.99)
+
+    axs[0].imshow(gradient, aspect="auto", cmap=TOLCmap.sunset())
+    axs[0].text(
+        -0.01,
+        0.5,
+        "sunset",
+        va="center",
+        ha="right",
+        fontsize=10,
+        transform=axs[0].transAxes,
+    )
+    axs[1].imshow(gradient, aspect="auto", cmap=TOLCmap.BuRd())
+    axs[1].text(
+        -0.01,
+        0.5,
+        "BuRd",
+        va="center",
+        ha="right",
+        fontsize=10,
+        transform=axs[1].transAxes,
+    )
+    axs[2].imshow(gradient, aspect="auto", cmap=TOLCmap.nightfall())
+    axs[2].text(
+        -0.01,
+        0.5,
+        "nightfall",
+        va="center",
+        ha="right",
+        fontsize=10,
+        transform=axs[2].transAxes,
+    )
+    axs[3].imshow(gradient, aspect="auto", cmap=TOLCmap.PrGn())
+    axs[3].text(
+        -0.01,
+        0.5,
+        "PrGn",
+        va="center",
+        ha="right",
+        fontsize=10,
+        transform=axs[3].transAxes,
+    )
+    # Turn off *all* ticks & spines, not just the ones with colormaps.
+    for ax in axs:
+        ax.set_axis_off()
+
     plt.show()
 
 

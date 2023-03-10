@@ -31,7 +31,26 @@ class Figsize:
         """Width of the 1-1/2 column figure."""
         return 0.5 * (self.column_double + self.column_single) * cm
 
-    def h(self, num_row: int) -> float:
+    @property
+    def h_sr(self) -> float:
+        """Height of the single row figure."""
+        return self.row_default * cm
+
+    @property
+    def h_dr(self) -> float:
+        """Height of the double row figure."""
+        return self.row_default * 2 * cm
+
+    @property
+    def h_hr(self) -> float:
+        """Height of the 1-1/2 row figure."""
+        return self.row_default * 1.5 * cm
+
+    def w(self, width_scale: float) -> float:
+        """Width of the figure. 8.5 cm * `num_col`."""
+        return width_scale * self.column_single * cm
+
+    def h(self, height_scale: float) -> float:
         """Height of the figure. 6 cm * `num_row`."""
 
-        return num_row * self.row_default * cm
+        return height_scale * self.row_default * cm

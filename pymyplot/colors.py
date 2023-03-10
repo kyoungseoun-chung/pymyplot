@@ -3,6 +3,7 @@
 from typing import Union
 
 import matplotlib as mpl
+from matplotlib.colors import LinearSegmentedColormap
 
 
 color_dict: dict[str, Union[str, dict[int, str]]] = {
@@ -305,3 +306,95 @@ def get_cmap(cmap: str) -> mpl.colors.Colormap:
     """Get colormap from input string."""
 
     return mpl.colors.Colormap(cmap)
+
+
+class TOLCmap:
+
+    _sunset_colors: list[str] = [
+        "#364B9A",
+        "#4A7BB7",
+        "#6EA6CD",
+        "#98CAE1",
+        "#C2E4EF",
+        "#EAECCC",
+        "#FEDA8B",
+        "#FDB366",
+        "#F67E4B",
+        "#DD3D2D",
+        "#A50026",
+    ]
+    _BuRd_colors: list[str] = [
+        "#2166AC",
+        "#4393C3",
+        "#92C5DE",
+        "#D1E5F0",
+        "#F7F7F7",
+        "#FDDBC7",
+        "#F4A582",
+        "#D6604D",
+        "#B2182B",
+    ]
+
+    _nightfall_colors: list[str] = [
+        "#125A56",
+        "#00767B",
+        "#238F9D",
+        "#42A7C6",
+        "#60BCE9",
+        "#9DCCEF",
+        "#C6DBED",
+        "#DEE6E7",
+        "#ECEADA",
+        "#F0E6B2",
+        "#F9D576",
+        "#FFB954",
+        "#FD9A44",
+        "#F57634",
+        "#E94C1F",
+        "#D11807",
+        "#A01813",
+    ]
+
+    _PrGn_colors: list[str] = [
+        "#762A83",
+        "#9970AB",
+        "#C2A5CF",
+        "#E7D4E8",
+        "#F7F7F7",
+        "#D9F0D3",
+        "#ACD39E",
+        "#5AAE61",
+        "#1B7837",
+    ]
+
+    @classmethod
+    def sunset(cls) -> LinearSegmentedColormap:
+
+        cmap = LinearSegmentedColormap.from_list("sunset", cls._sunset_colors)
+        cmap.set_bad("#FFFFFF")
+
+        return cmap
+
+    @classmethod
+    def BuRd(cls) -> LinearSegmentedColormap:
+
+        cmap = LinearSegmentedColormap.from_list("BuRd", cls._BuRd_colors)
+        cmap.set_bad("#FFFF99")
+
+        return cmap
+
+    @classmethod
+    def nightfall(cls) -> LinearSegmentedColormap:
+
+        cmap = LinearSegmentedColormap.from_list("nightfall", cls._nightfall_colors)
+        cmap.set_bad("#FFFFFF")
+
+        return cmap
+
+    @classmethod
+    def PrGn(cls) -> LinearSegmentedColormap:
+
+        cmap = LinearSegmentedColormap.from_list("PrGn", cls._PrGn_colors)
+        cmap.set_bad("#FFFF99")
+
+        return cmap
