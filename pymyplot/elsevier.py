@@ -89,10 +89,6 @@ myplt.rcParams["font.family"] = Font.default_family
 myplt.rcParams["font.sans-serif"] = Font.default_font
 myplt.rcParams["text.usetex"] = Font.use_tex
 
-# Set default dpi
-myplt.rcParams["figure.dpi"] = DPI.halftone
-myplt.rcParams["savefig.dpi"] = DPI.line
-
 # Cycler
 # Follows the recommended color palette in get_color method
 default_cycler = cycler(
