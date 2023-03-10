@@ -6,6 +6,15 @@ import pytest
 from pymyplot import myplt as plt
 
 
+def test_figure_type() -> None:
+
+    from pymyplot import Figure
+
+    fig, _ = plt.subplots(1, 1)
+
+    assert isinstance(fig, Figure)
+
+
 def test_elsevier_setup() -> None:
 
     from pymyplot.elsevier import Line as ELLine

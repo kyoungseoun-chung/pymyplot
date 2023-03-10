@@ -98,7 +98,7 @@ default_cycler = cycler(
         get_color("green-600"),
         get_color("yellow-500"),
         get_color("cyan-400"),
-        get_color("fuchsia-700"),
+        get_color("pink-600"),
         get_color("gray-400"),
     ]
 ) + cycler(linestyle=["-", "--", ":", "-.", "-", "--", ":"])
