@@ -17,4 +17,4 @@ Figure = _Figure  # for type alias
 
 
 __all__ = ["get_color"]
-__version__ = "0.2.6"
+__version__ = "0.2.7"
